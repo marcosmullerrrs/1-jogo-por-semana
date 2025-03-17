@@ -1,0 +1,40 @@
+import random
+
+# Função que gera as respostas e mensagens de feedback
+def jogar():
+    pontos = 0
+    for rodada in range(1, 6):
+        # Gera os números aleatórios para a tabuada
+        num1 = random.randint(0, 10)
+        num2 = random.randint(0, 10)
+        
+        # Exibe a questão
+        resposta_correta = num1 * num2
+        resposta_usuario = int(input(f"Rodada {rodada}: Quanto é {num1} * {num2}? "))
+        
+        # Verifica a resposta
+        if resposta_usuario == resposta_correta:
+            pontos += 1
+            print("Acertou, mizeravi!")
+        else:
+            print("Errrrrrrrrroooou!")
+        
+        # Feedback baseado no número de acertos
+        if pontos == 0:
+            print("Precisa estudar mais!")
+        elif pontos == 1:
+            print("Foi bem, mas pode melhorar!")
+        elif pontos == 2:
+            print("Foi muito bem!")
+        elif pontos == 3:
+            print("Está manjando dos paranauê!")
+        elif pontos == 4:
+            print("Ora, ora, parece que temos um matemático!")
+        elif pontos == 5:
+            print("Ora, ora, parece que temos um novo Ramanujan!")
+        
+    print(f"\nFim do jogo! Você acertou {pontos}/5 perguntas.")
+    
+# Começar o jogo
+print("Bem-vindo ao Jogo da Tabuada!")
+jogar()
