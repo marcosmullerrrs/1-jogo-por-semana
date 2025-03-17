@@ -1,0 +1,57 @@
+import random
+
+# Configurações iniciais
+vida_jogador = 10
+trolls_derrotados = 0
+
+print("Bem-vindo à batalha contra os Trolls!")
+print("Você tem 10 pontos de vida e deve derrotar 3 Trolls para vencer.")
+
+while trolls_derrotados < 3 and vida_jogador > 0:
+    vida_troll = 3
+    print(f"\nApareceu um Troll! Vida do Troll: {vida_troll}")
+    
+    while vida_troll > 0 and vida_jogador > 0:
+        # Escolha do jogador
+        escolha = input("\nVocê luta ou foge? (lutar/fugir): ").strip().lower()
+
+        if escolha == "fugir":
+            vida_jogador -= 1
+            print(f"Você fugiu! Perdeu 1 ponto de vida. Vida atual: {vida_jogador}")
+            break  # Sai do loop e encontra outro troll
+
+        elif escolha == "lutar":
+            # Ataque do jogador
+            dado = random.randint(1, 6)
+            print(f"\nVocê rolou o dado e saiu {dado}.")
+            if dado % 2 == 0:
+                vida_troll -= 1
+                print(f"Ataque bem-sucedido! O Troll perdeu 1 ponto de vida. Vida do Troll: {vida_troll}")
+            else:
+                print("O Troll defendeu seu ataque!")
+
+            # Se o troll ainda estiver vivo, ele ataca
+            if vida_troll > 0:
+                dado = random.randint(1, 6)
+                print(f"\nO Troll rolou o dado e saiu {dado}.")
+                if dado % 2 == 0:
+                    vida_jogador -= 1
+                    print(f"O Troll atacou com sucesso! Você perdeu 1 ponto de vida. Vida atual: {vida_jogador}")
+                else:
+                    print("Você conseguiu se defender!")
+
+        else:
+            print("Escolha inválida! Digite 'lutar' ou 'fugir'.")
+
+    # Se o jogador venceu o Troll
+    if vida_troll == 0:
+        trolls_derrotados += 1
+        vida_jogador += 3  # Ganha 3 pontos de vida
+        print(f"\nVocê derrotou o Troll! Ganhou +3 pontos de vida. Vida atual: {vida_jogador}")
+        print(f"Trolls derrotados: {trolls_derrotados}/3")
+
+# Resultado do jogo
+if trolls_derrotados == 3:
+    print("\nParabéns! Você derrotou os 3 Trolls e conquistou o tesouro!")
+else:
+    print("\nVocê foi derrotado pelos Trolls... Fim de jogo.")
