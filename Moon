@@ -1,0 +1,84 @@
+import random
+
+# Função para rolar o dado e retornar o resultado
+def rolar_dado():
+    return random.randint(1, 6)
+
+# Função para exibir os recursos
+def mostrar_recursos(vida, oxigenio, comida, curativos):
+    print(f"\nVida: {vida} | Oxigênio: {oxigenio} | Comida: {comida} | Curativos: {curativos}")
+
+# Função para a exploração
+def explorar(area, vida, oxigenio, comida, curativos):
+    print(f"\nExplorando a área: {area}")
+    
+    # Rolando o dado para ver o que o personagem encontra
+    dado = rolar_dado()
+    print(f"O dado caiu em {dado}.")
+    
+    if dado == 1:
+        print("Você não encontrou nada e ainda teve problemas inesperados! Perdeu 10 pontos de vida.")
+        vida -= 10
+    elif dado == 6:
+        print("Você encontrou o recurso desejado e mais um pacote de emergência! Ganhou 20 pontos de vida.")
+        if area == "Água":
+            vida += 40
+        elif area == "Comida":
+            vida += 30
+        elif area == "Curativo":
+            vida += 20
+    elif dado in [2, 3, 5]:
+        print(f"Você não encontrou nada, mas não teve problemas.")
+        vida -= 10
+    elif dado == 4:
+        print(f"Você encontrou o recurso desejado!")
+        if area == "Água":
+            vida += 40
+        elif area == "Comida":
+            vida += 30
+        elif area == "Curativo":
+            vida += 20
+
+    # Verifica se a vida está abaixo de 0
+    if vida <= 0:
+        print("\nVocê morreu! Fim do jogo.")
+        return False, vida
+    
+    # Exibe os recursos restantes
+    mostrar_recursos(vida, oxigenio, comida, curativos)
+    
+    return True, vida
+
+# Função principal do jogo
+def iniciar_jogo():
+    vida = 100
+    oxigenio = 1
+    comida = 1
+    curativos = 1
+
+    print("Bem-vindo ao RPG de Sobrevivência Lunar!")
+    mostrar_recursos(vida, oxigenio, comida, curativos)
+    
+    # Loop do jogo
+    while vida > 0:
+        print("\nO que você deseja fazer?")
+        print("1 - Explorar a Água")
+        print("2 - Explorar a Comida")
+        print("3 - Explorar os Curativos")
+        escolha = input("Escolha uma opção: ")
+
+        if escolha == '1':
+            sucesso, vida = explorar("Água", vida, oxigenio, comida, curativos)
+        elif escolha == '2':
+            sucesso, vida = explorar("Comida", vida, oxigenio, comida, curativos)
+        elif escolha == '3':
+            sucesso, vida = explorar("Curativo", vida, oxigenio, comida, curativos)
+        else:
+            print("Opção inválida! Tente novamente.")
+
+        # Se a vida for menor ou igual a 0, o jogo acaba
+        if not sucesso:
+            break
+
+# Iniciar o jogo
+iniciar_jogo()
