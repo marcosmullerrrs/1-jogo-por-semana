@@ -1,0 +1,41 @@
+# Função que roda o jogo
+def jogar():
+    pontos = 0  # Variável para contar acertos
+
+    # Lista de perguntas, opções e respostas corretas
+    perguntas = [
+        ("Na Roma Antiga, Júlio César era:", ["Imperador", "Governador", "Presidente", "Prefeito"], "Imperador"),
+        ("O Brasil foi descoberto em qual época?", ["Grandes Navegações", "Antiguidade Clássica", "Revolução Francesa", "Revolução Industrial"], "Grandes Navegações"),
+        ("Quem foi o último Faraó do Egito?", ["Esfinge", "Mun-ha", "Cleópatra", "Nefertite"], "Cleópatra")
+    ]
+
+    # Loop para exibir perguntas
+    for i, (pergunta, opcoes, resposta_correta) in enumerate(perguntas):
+        print(f"\nPergunta {i + 1}: {pergunta}")
+        for j, opcao in enumerate(opcoes, start=1):
+            print(f"({j}) {opcao}")
+
+        # Recebe a resposta do usuário
+        try:
+            resposta_usuario = int(input("Digite o número da resposta correta: "))
+            if opcoes[resposta_usuario - 1] == resposta_correta:
+                print("✔️ Resposta correta!")
+                pontos += 1
+            else:
+                print("❌ Resposta errada!")
+        except (ValueError, IndexError):
+            print("⚠️ Resposta inválida! Considerado como erro.")
+
+    # Mensagem final com base nos acertos
+    print("\nFim do jogo!")
+    mensagens = [
+        "Precisa revisar o livro de história!",
+        "Parabéns, está no caminho certo!",
+        "Excelente!",
+        "Ora, ora, temos um sabe-tudo!"
+    ]
+    print(mensagens[pontos])
+
+# Começar o jogo
+print("Bem-vindo ao Jogo de História!")
+jogar()
