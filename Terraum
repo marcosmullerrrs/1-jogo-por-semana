@@ -1,0 +1,160 @@
+import random
+import time
+
+# Inicializa os atributos do Dexa
+vida_dexa = 10
+pistas = 0
+turnos = 0  # Variável global que controla o número de turnos
+pontos_especiais = ["Ruínas do Castelo", "Montanha sem Neve", "Floresta Deserto", "Cachoeira Seca", "Floresta Morta", "Caverna", "Torre do Mago"]
+
+def jogar_dado():
+    return random.randint(1, 6)
+
+def batalha_inimigo_comum():
+    global vida_dexa, pistas
+    vida_inimigo = 3
+    print("\n🔥 Você encontrou um inimigo comum!")
+
+    while vida_inimigo > 0 and vida_dexa > 0:
+        acerto = jogar_dado()
+        if acerto >= 4:
+            vida_inimigo -= 1
+            print(f"💥 Você atacou e acertou! Vida do inimigo: {vida_inimigo}")
+        else:
+            print("😱 Você errou o ataque!")
+
+        if vida_inimigo > 0:
+            ataque_inimigo = jogar_dado()
+            if ataque_inimigo >= 4:
+                vida_dexa -= 1
+                print(f"⚔️ O inimigo atacou! Sua vida: {vida_dexa}")
+            else:
+                print("👀 O inimigo errou!")
+
+    if vida_dexa > 0:
+        pistas += 1
+        vida_dexa += 3
+        print(f"\n🎉 Você venceu! +3 de vida e ganhou uma pista ({pistas}/10)\n")
+    else:
+        print("\n💀 Você foi derrotado! Fim de jogo.\n")
+        return False
+    return True
+
+def batalha_inimigo_especial():
+    global vida_dexa, pistas
+    vida_inimigo = 5
+    print("\n🔥 Você encontrou um inimigo especial no ponto de interesse!")
+
+    while vida_inimigo > 0 and vida_dexa > 0:
+        acerto = jogar_dado()
+        if acerto >= 4:
+            vida_inimigo -= 1
+            print(f"💥 Você atacou e acertou! Vida do inimigo: {vida_inimigo}")
+        else:
+            print("😱 Você errou o ataque!")
+
+        if vida_inimigo > 0:
+            ataque_inimigo = jogar_dado()
+            if ataque_inimigo >= 4:
+                vida_dexa -= 1
+                print(f"⚔️ O inimigo atacou! Sua vida: {vida_dexa}")
+            else:
+                print("👀 O inimigo errou!")
+
+    if vida_dexa > 0:
+        pistas += 1
+        vida_dexa += 3
+        print(f"\n🎉 Você venceu o inimigo especial! +3 de vida e ganhou uma pista ({pistas}/10)\n")
+    else:
+        print("\n💀 Você foi derrotado! Fim de jogo.\n")
+        return False
+    return True
+
+# Simulação de um turno
+def turno():
+    global vida_dexa, turnos
+    print(f"\n🌅 Turno {turnos + 1} começa...")
+    
+    d1, d2 = jogar_dado(), jogar_dado()
+    
+    if d1 % 2 == 0 or d2 % 2 == 0:
+        return batalha_inimigo_comum()
+    else:
+        vida_dexa += 1
+        print("😴 Nada aconteceu. Você recupera 1 ponto de vida.")
+        return True
+
+# Função para o enredo inicial
+def introducao():
+    print("Bem-vindo a Terraum!")
+    print("\nVocê é Dexa, um jovem elfo determinado a derrotar o Mago da Torre, que devastou a natureza do planeta.")
+    print("Durante sua jornada, você enfrentará inimigos e desafios, enquanto tenta coletar pistas sobre o Mago.")
+    print("\nPressione 'Enter' para começar sua jornada...")
+
+# Função para a batalha contra o Mago
+def batalha_contra_o_mago():
+    global vida_dexa
+    vida_mago = 10
+    print("\n🔥 Você chegou à Torre do Mago e está prestes a enfrentar o Mago da Torre!")
+
+    while vida_mago > 0 and vida_dexa > 0:
+        acerto = jogar_dado()
+        if acerto >= 4:
+            vida_mago -= 1
+            print(f"💥 Você atacou o Mago! Vida do Mago: {vida_mago}")
+        else:
+            print("😱 Você errou o ataque!")
+
+        if vida_mago > 0:
+            ataque_mago = jogar_dado()
+            if ataque_mago >= 4:
+                vida_dexa -= 1
+                print(f"⚔️ O Mago atacou! Sua vida: {vida_dexa}")
+            else:
+                print("👀 O Mago errou!")
+
+    if vida_dexa > 0:
+        print("\n🎉 Você derrotou o Mago! Terraum foi salvo e a natureza restaurada.")
+        if pistas >= 10:
+            print("🕊️ O Mago foi redimido e sua bondade foi restaurada!")
+        else:
+            print("⚔️ O Mago foi derrotado sem redenção.")
+    else:
+        print("\n💀 Você foi derrotado! Fim de jogo.\n")
+
+# Função para iniciar o jogo
+def iniciar_jogo():
+    global turnos  # Garantir que a variável turnos é global
+    introducao()  # Enredo inicial
+
+    time.sleep(1)  # Atraso para dar tempo de o jogador ler a introdução
+
+    while vida_dexa > 0 and pistas < 10:
+        print("\nPressione 'Enter' para iniciar o próximo turno...")
+        input()  # Permite a interação para continuar o jogo
+
+        if turnos > 0 and turnos % 5 == 0:
+            ponto_especial = random.choice(pontos_especiais)
+            print(f"\n🌍 Você chegou ao ponto especial: {ponto_especial}")
+            batalha_especial = batalha_inimigo_especial()
+            if not batalha_especial:
+                break  # Se Dexa for derrotado, o jogo termina
+        else:
+            turno_continuar = turno()
+
+            if not turno_continuar:
+                break  # Se Dexa morrer, o jogo termina
+
+        turnos += 1
+        print(f"\n🌙 Dexa dorme. Sua vida atual é {vida_dexa}.")
+
+    if pistas >= 10:
+        print("\n🎉 Você coletou 10 pistas! Agora, ao derrotar o Mago, ele será redimido e Terraum será salvo.")
+    else:
+        print("\n💀 Você não coletou todas as pistas. O Mago será derrotado sem redenção.")
+
+    # Luta contra o Mago
+    batalha_contra_o_mago()
+
+# Iniciar o jogo
+iniciar_jogo()
