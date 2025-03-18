@@ -1,0 +1,40 @@
+import random
+
+# Lista de palavras para o jogo
+palavras = ["CASA", "MELHOR", "MUNDO", "GATO", "AMIGO"]
+
+# Função para embaralhar a palavra
+def embaralhar_palavra(palavra):
+    palavra_lista = list(palavra)
+    random.shuffle(palavra_lista)
+    return ''.join(palavra_lista)
+
+# Função principal do jogo
+def jogo_anagrama():
+    print("Bem-vindo ao Jogo do Anagrama!")
+    print("Você terá que adivinhar a palavra correta. Vamos começar!")
+
+    # Laço para jogar 5 vezes
+    for i in range(5):
+        palavra = random.choice(palavras)  # Escolhe uma palavra aleatória
+        palavra_embaralhada = embaralhar_palavra(palavra)  # Embaralha a palavra
+        print(f"\nPalavra embaralhada: {palavra_embaralhada}")
+
+        # O jogador tem 3 tentativas para adivinhar
+        tentativas = 3
+        while tentativas > 0:
+            palpite = input(f"Tentativas restantes: {tentativas}. Qual é a palavra? ").upper()
+            if palpite == palavra:
+                print("Parabéns! Você acertou.")
+                break
+            else:
+                tentativas -= 1
+                if tentativas == 0:
+                    print(f"Você perdeu! A palavra correta era: {palavra}")
+                else:
+                    print("Tente novamente!")
+
+    print("\nParabéns, Sherlock Holmes!")
+
+# Chama a função do jogo
+jogo_anagrama()
