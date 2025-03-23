@@ -1,0 +1,72 @@
+import random
+import os
+
+# ficha dos personagens
+vida_jogador = 100
+pontos_ex = 0
+nivel = 0
+
+vida_goblin = 30
+vida_aranha = 40
+
+print("Você é um jovem aventureiro que tem um único objetivo \nse tornar um caçador de monstros \n \n")
+print("Goblins foram vistos na caverna do bosque. Você parte para lá imediatamente. Você entra na caverna portando a sua espada curta e uma tocha que ilumina o pouco que se vê. O cheiro horrível do lugar denuncia que goblins estiveram por ali. Mais alguns passos e... sim, ali estão! Porém, assustados os Goblins correm e conseguem fugir. Um deles, porém, decide ficar e lutar")
+
+# Pausa antes de começar a batalha
+input("\nPressione Enter para começar a batalha...")
+
+# Limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print("Você ataca primeiro!")
+
+# enquanto o goblin ou o jogador não morrerem
+while vida_goblin > 0 and vida_jogador > 0:
+    dado = random.randint(1, 6)
+    
+    if dado % 2 == 0:
+        vida_goblin -= 10
+        print("O ataque deu certo!")
+    else:
+        print("O Goblin defendeu o ataque!")
+    
+    # Goblin atacando
+    dado = random.randint(1, 6)
+    print(f"\nAgora é o Goblin que ataca!")
+    if dado % 2 == 0:
+        vida_jogador -= 1
+        print("O goblin acertou o ataque!")
+    else:
+        print("Você conseguiu se defender!")
+    
+    if vida_goblin <= 0:
+        break
+
+print("🎊 Parabéns! Você derrotou o seu primeiro monstro! E a aventura continua! Agora você vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+
+print("Porém, tudo o que é bom dura pouco... e no dia seguinte, escuta rumores de que uma aranha gigante apareceu na borda da floresta. Voce parte para lá")
+
+# enquanto a aranha ou o jogador não morrerem
+while vida_aranha > 0 and vida_jogador > 0:
+    dado = random.randint(1, 6)
+    
+    if dado % 2 == 0:
+        vida_aranha -= 10
+        print("O ataque deu certo!")
+    else:
+        print("A aranha defendeu o ataque!")
+    
+    # Aranha atacando
+    dado = random.randint(1, 6)
+    print(f"\nAgora é a aranha que ataca!")
+    if dado % 2 == 0:
+        vida_jogador -= 1
+        print("A aranha acertou o ataque!")
+    else:
+        print("Você conseguiu se defender!")
+    
+    if vida_aranha <= 0:
+        break
+
+# Mensagem final
+print("🎊 Parabéns! Você derrotou a aranha gigante! Agora você é oficialmente um caçador de monstros, e vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
