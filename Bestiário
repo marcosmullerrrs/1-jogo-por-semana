@@ -9,16 +9,25 @@ nivel = 0
 vida_goblin = 30
 vida_aranha = 40
 
-print("Você é um jovem aventureiro que tem um único objetivo \nse tornar um caçador de monstros \n \n")
-print("Goblins foram vistos na caverna do bosque. Você parte para lá imediatamente. Você entra na caverna portando a sua espada curta e uma tocha que ilumina o pouco que se vê. O cheiro horrível do lugar denuncia que goblins estiveram por ali. Mais alguns passos e... sim, ali estão! Porém, assustados os Goblins correm e conseguem fugir. Um deles, porém, decide ficar e lutar")
+# Função para exibir o status do jogador
+def exibir_status():
+    print(f"\nHP: {vida_jogador}  Lvl: {nivel:02d}  Exp: {pontos_ex}/100")
 
-# Pausa antes de começar a batalha
-input("\nPressione Enter para começar a batalha...")
+# Início do jogo
+print("O seu objetivo é: tornar-se um caçador de monstros.\n \n")
+input("Pressione Enter para continuar...")  # Pausa para o jogador continuar
+
+# Limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print("Goblins foram vistos na Caverna do Bosque \n e você parte para lá imediatamente e \n entra na caverna portando a sua espada \n e uma tocha. O cheiro horrível do local diz que goblins estiveram ali. \nMais alguns passos e... sim, ali estão! \n Porém, assustados os Goblins correm e conseguem fugir. Um deles, porém, decide ficar e lutar")
+input("\nPressione Enter para começar a batalha...")  # Pausa para o jogador continuar
 
 # Limpa a tela
 os.system('cls' if os.name == 'nt' else 'clear')
 
 print("Você ataca primeiro!")
+exibir_status()  # Exibe o status do jogador
 
 # enquanto o goblin ou o jogador não morrerem
 while vida_goblin > 0 and vida_jogador > 0:
@@ -42,9 +51,31 @@ while vida_goblin > 0 and vida_jogador > 0:
     if vida_goblin <= 0:
         break
 
-print("🎊 Parabéns! Você derrotou o seu primeiro monstro! E a aventura continua! Agora você vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+# Pausa após derrotar o goblin
+input("\nPressione Enter para continuar...")
 
+# Limpa a tela após a batalha com o Goblin
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Atualiza a experiência
+pontos_ex += 30
+if pontos_ex >= 100:
+    nivel += 1
+    pontos_ex = 0
+
+# Exibe a mensagem de vitória
+print("🎊 Parabéns! Você derrotou o seu primeiro monstro! E a aventura continua! Agora você vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+exibir_status()  # Exibe o status do jogador
+
+# Pausa para o jogador apertar enter antes de continuar
+input("\nPressione Enter para continuar...") 
+
+# Limpa a tela após a pausa
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Exibe a próxima parte da história
 print("Porém, tudo o que é bom dura pouco... e no dia seguinte, escuta rumores de que uma aranha gigante apareceu na borda da floresta. Voce parte para lá")
+input("\nPressione Enter para continuar...")  # Pausa para o jogador continuar
 
 # enquanto a aranha ou o jogador não morrerem
 while vida_aranha > 0 and vida_jogador > 0:
@@ -68,5 +99,18 @@ while vida_aranha > 0 and vida_jogador > 0:
     if vida_aranha <= 0:
         break
 
-# Mensagem final
+# Pausa após derrotar a aranha
+input("\nPressione Enter para continuar...")
+
+# Limpa a tela após a batalha com a aranha
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Atualiza a experiência
+pontos_ex += 30
+if pontos_ex >= 100:
+    nivel += 1
+    pontos_ex = 0
+
+# Exibe a mensagem de vitória
 print("🎊 Parabéns! Você derrotou a aranha gigante! Agora você é oficialmente um caçador de monstros, e vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+exibir_status()  # Exibe o status do jogador
