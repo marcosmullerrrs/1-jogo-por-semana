@@ -8,19 +8,23 @@ nivel = 0
 
 vida_goblin = 30
 vida_aranha = 40
+vida_escorpiao = 40
+monstro_do_pantano = 50
+
 
 # Função para exibir o status do jogador
 def exibir_status():
     print(f"\nHP: {vida_jogador}  Lvl: {nivel:02d}  Exp: {pontos_ex}/100")
 
 # Início do jogo
-print("O seu objetivo é: tornar-se um caçador de monstros.\n \n")
-input("Pressione Enter para continuar...")  # Pausa para o jogador continuar
+print("O seu objetivo é se tornar um caçador de monstros.\n \n")
+input("Pressione Enter para continuar...")  
+# Pausa para o jogador continuar
 
 # Limpa a tela
 os.system('cls' if os.name == 'nt' else 'clear')
 
-print("Goblins foram vistos na Caverna do Bosque \n e você parte para lá imediatamente e \n entra na caverna portando a sua espada \n e uma tocha. O cheiro horrível do local diz que goblins estiveram ali. \nMais alguns passos e... sim, ali estão! \n Porém, assustados os Goblins correm e conseguem fugir. Um deles, porém, decide ficar e lutar")
+print("Goblins 🧟🧟‍♀️🧟‍♂️ foram vistos na Caverna do Bosque e você parte para lá imediatamente. Voce entra na caverna escura... O cheiro horrível do local diz que goblins estiveram ali. Mais alguns passos e... sim, ali estão! \n Porém, assustados os Goblins correm e conseguem fugir. Um deles, porém, decide ficar e lutar")
 input("\nPressione Enter para começar a batalha...")  # Pausa para o jogador continuar
 
 # Limpa a tela
@@ -37,14 +41,14 @@ while vida_goblin > 0 and vida_jogador > 0:
         vida_goblin -= 10
         print("O ataque deu certo!")
     else:
-        print("O Goblin defendeu o ataque!")
+        print("O Goblin defendeu o ataque! 🧟")
     
     # Goblin atacando
     dado = random.randint(1, 6)
-    print(f"\nAgora é o Goblin que ataca!")
+    print(f"\nAgora é o Goblin que ataca!🧟")
     if dado % 2 == 0:
         vida_jogador -= 1
-        print("O goblin acertou o ataque!")
+        print("O goblin acertou o ataque!🧟")
     else:
         print("Você conseguiu se defender!")
     
@@ -64,7 +68,7 @@ if pontos_ex >= 100:
     pontos_ex = 0
 
 # Exibe a mensagem de vitória
-print("🎊 Parabéns! Você derrotou o seu primeiro monstro! E a aventura continua! Agora você vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+print("🎊 Parabéns! Você derrotou o seu primeiro monstro!  E agora voce vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
 exibir_status()  # Exibe o status do jogador
 
 # Pausa para o jogador apertar enter antes de continuar
@@ -74,8 +78,13 @@ input("\nPressione Enter para continuar...")
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Exibe a próxima parte da história
-print("Porém, tudo o que é bom dura pouco... e no dia seguinte, escuta rumores de que uma aranha gigante apareceu na borda da floresta. Voce parte para lá")
+print("Porém, tudo o que é bom dura pouco... e no dia seguinte, escuta rumores de que uma aranha gigante 🕷🕸  apareceu na borda da floresta. Voce parte para lá")
 input("\nPressione Enter para continuar...")  # Pausa para o jogador continuar
+
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
 
 # enquanto a aranha ou o jogador não morrerem
 while vida_aranha > 0 and vida_jogador > 0:
@@ -85,14 +94,14 @@ while vida_aranha > 0 and vida_jogador > 0:
         vida_aranha -= 10
         print("O ataque deu certo!")
     else:
-        print("A aranha defendeu o ataque!")
+        print("A aranha defendeu o ataque!🕷🕸")
     
     # Aranha atacando
     dado = random.randint(1, 6)
-    print(f"\nAgora é a aranha que ataca!")
+    print(f"\nAgora é a aranha que ataca!🕷🕸")
     if dado % 2 == 0:
         vida_jogador -= 1
-        print("A aranha acertou o ataque!")
+        print("A aranha acertou o ataque!🕷🕸")
     else:
         print("Você conseguiu se defender!")
     
@@ -112,5 +121,106 @@ if pontos_ex >= 100:
     pontos_ex = 0
 
 # Exibe a mensagem de vitória
-print("🎊 Parabéns! Você derrotou a aranha gigante! Agora você é oficialmente um caçador de monstros, e vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
-exibir_status()  # Exibe o status do jogador
+print("🎊 Parabéns! 🥳 Você derrotou a aranha gigante! Agora você é oficialmente um caçador de monstros, e vai à taberna beber 🥤 refrigerantes e contar a sua aventura!")
+exibir_status()  # Exibe o status do jogado
+
+input("\nPressione Enter para continuar...")
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print("Poucos dias depois, um escorpião 🦂 gigante foi visto no bosque, voce ruma para lá!")
+exibir_status() #Exibe o status do jogadorp
+
+input("\nPressione Enter para continuar...")
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# enquanto a escorpiao ou o jogador não morrerem
+while vida_escorpiao > 0 and vida_jogador > 0:
+    dado = random.randint(1, 6)
+    
+    if dado % 2 == 0:
+        vida_escorpiao -= 10
+        print("O ataque deu certo!")
+    else:
+        print("O escorpião 🦂 defendeu o ataque!")
+    
+    # Escorpiao atacando
+    dado = random.randint(1, 6)
+    print(f"\nAgora é o escorpião 🦂 que ataca!")
+    if dado % 2 == 0:
+        vida_jogador -= 1
+        print("O escorpião 🦂 acertou o ataque!")
+    else:
+        print("Você conseguiu se defender!")
+    
+    if vida_escorpiao <= 0:
+        break
+
+input("\nPressione Enter para continuar...")
+
+# Atualiza a experiência
+pontos_ex += 30
+if pontos_ex >= 100:
+    nivel += 1
+    pontos_ex = 0
+  
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Exibe a mensagem de vitória
+print("🎊 Parabéns, voce está se tornando um caçador de monstros respeitado!")
+exibir_status()  # Exibe o status do jogado
+
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+input("\nPressione Enter para continuar...")
+
+print("O Monstro do Pantano 🤮 voltou a atacar, e os aldeões precisam de ajuda. Voce parte para os pantanos imediatamente")
+
+
+input("\nPressione Enter para continuar...")
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# enquanto o monstro do pantano ou o jogador não morrerem
+while monstro_do_pantano > 0 and vida_jogador > 0:
+    dado = random.randint(1, 6)
+    
+    if dado % 2 == 0:
+        monstro_do_pantano -= 10
+        print("O ataque deu certo!")
+    else:
+        print("O Monstro do Pantano 🤮 defendeu o ataque!")
+    
+    # Monstro do Pantano atacando
+    dado = random.randint(1, 6)
+    print(f"\nAgora é o Monstro do Pantano 🤮 que ataca!")
+    if dado % 2 == 0:
+        vida_jogador -= 1
+        print("O Monstro 🤮 acertou o ataque!")
+    else:
+        print("Você conseguiu se defender!")
+    
+    if monstro_do_pantano <= 0:
+        break
+        
+input("\nPressione Enter para continuar...")
+
+#limpa a tela
+os.system('cls' if os.name == 'nt' else 'clear')
+
+# Exibe a mensagem de vitória
+print("🎊 Parabéns, voce derrotou o Monstro do Pantano! Voce é um grande caçador de monstros!")
+exibir_status()  # Exibe o status do jogado
+
+# Atualiza a experiência
+pontos_ex += 30
+if pontos_ex >= 100:
+    nivel += 1
+    pontos_ex = 0
